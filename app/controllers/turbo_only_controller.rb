@@ -1,9 +1,11 @@
 class TurboOnlyController < ApplicationController
-  prepend_before_action :only_turbo
-
-  def turbo_only_layout
-    raise NotImplementedError, "#{self.class} must implement turbo_only_layout"
+  class NoLayoutProvidedError < StandardError
   end
 
-  layout :turbo_only_layout
+  prepend_before_action :only_turbo
+
+  layout -> {
+           raise NoLayoutProvidedError,
+                 "Class that inherits from #{self.class} must provide a layout"
+         }
 end
