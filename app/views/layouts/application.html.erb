@@ -11,11 +11,9 @@
   </head>
 
   <body>
-    <%= turbo_frame_tag :side_bar do %>
-      <p> TODO: Create a reactive sidebar using Turbo! </p>
-    <% end %>
+    <%= turbo_frame_tag :top_bar, src: top_bar_index_path %>
 
-    <%= turbo_frame_tag :main_content do %>
+    <%= render 'layouts/main' do %>
       <%= yield %>
     <% end %>
   </body>
